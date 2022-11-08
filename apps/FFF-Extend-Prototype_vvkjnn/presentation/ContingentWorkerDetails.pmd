@@ -164,7 +164,7 @@
               "type": "text",
               "id": "supplier",
               "label": "supplier",
-              "enabled": true
+              "enabled": false
             }
           ]
         }
