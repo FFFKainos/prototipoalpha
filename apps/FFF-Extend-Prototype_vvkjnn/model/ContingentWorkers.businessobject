@@ -1,0 +1,40 @@
+{
+  "id": 1,
+  "name": "ContingentWorkers",
+  "label": "Contingent Workers",
+  "defaultSecurityDomains": [
+    "PrototypeDomain"
+  ],
+  "defaultCollection": {
+    "name": "contingentWorkers",
+    "label": "All Contingent Workers"
+  },
+  "fields": [
+    {
+      "id": 1,
+      "name": "firstName",
+      "label": "First Name",
+      "type": "TEXT",
+      "useForDisplay": true,
+      "isReferenceId": true
+    },
+    {
+      "id": 2,
+      "name": "lastName",
+      "label": "Last Name",
+      "type": "TEXT"
+    },
+    {
+      "id": 3,
+      "name": "contingentWorkerType",
+      "label": "Contingent Worker Type",
+      "type": "TEXT"
+    },
+    {
+      "id": 4,
+      "name": "manager",
+      "label": "Manager",
+      "type": "TEXT"
+    }
+  ]
+}

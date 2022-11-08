@@ -1,0 +1,174 @@
+{
+  "id": "ContingentWorkerDetails",
+  "securityDomains": [
+    "PrototypeDomain"
+  ],
+  "endPoints": [
+    {
+      "name": "countryPhoneCodes",
+      "baseUrlType": "ref-data",
+      "url": "<% ('/country_phone_code/vers/latest/search?q=' + instanceListQuery).pathEncode() %>",
+      "authType": "sso",
+      "deferred": true,
+      "exclude":" <% empty(instanceListQuery) %>"
+    },
+    {
+      "name": "jobProfiles",
+      "baseUrlType": "workday-wql",
+      "url": "<% '/data?query=' + 'SELECT jobProfileName, ID FROM allJobProfiles WHERE jobProfileName is not null'.pathEncode() %>",
+      "authType": "sso"
+    }
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "type": "outboundVariable",
+        "variableScope": "flow",
+        "name": "flowOutboundVars",
+        "values": [
+          {
+            "outboundPath": "contractStartDate",
+            "value": "<% startDate.value %>"
+          },
+          {
+            "outboundPath": "contractEndDate",
+            "value": "<% endDate.value.format('dd-MM-yyyy') %>"
+          },
+          {
+            "outboundPath": "numberForPhoneCode",
+            "value": "<% countryList.selectedEntries[0].id %>"
+          },
+          {
+            "outboundPath": "contractStartDate",
+            "value": "<% startDate.value.format('dd-MM-yyyy') %>"
+          },
+          {
+            "outboundPath": "email",
+            "value": "<% workerEmail.value %>"
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "headerSize": "VPS_DEFAULT",
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Manage Externals",
+      "enabled": false
+    },
+    "body": {
+      "type": "fieldSet",
+      "id": "fieldContainer",
+      "horizontal": true,
+      "children": [
+        {
+          "type": "fieldSet",
+          "id": "personalInfo",
+          "title": "Personal Information",
+          "children": [
+            {
+              "type": "text",
+              "label": "First Name",
+              "enabled": false,
+              "value": "<% flowVariables.workerFirstName %>"
+            },
+            {
+              "type": "text",
+              "label": "Last Name",
+              "enabled": false,
+              "value": "<% flowVariables.workerLastName %>"
+            },
+            {
+              "type": "date",
+              "label": "Contract Start Date",
+              "id": "startDate",
+              "required": true,
+              "dateDisplayPattern": "dd/MM/yyyy",
+              "dateFormat": "dd/MM/yyyy"
+            },
+            {
+              "type": "date",
+              "label": "Contract End Date",
+              "id": "endDate",
+              "required": true,
+              "dateDisplayPattern": "dd/MM/yyyy",
+              "dateFormat": "dd/MM/yyyy"
+            },
+            {
+              "type": "instanceList",
+              "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
+              "id": "instanceListPhone",
+              "multiSelect" :false,
+              "values": "<% [] %>",
+              "searchEndPoint": "<% endpoints.countryPhoneCodes %>",
+              "searchResultValues": "<% countryPhoneCodes.items %>",
+              "displayKey": "phoneCode",
+              "idKey": "country",
+              "required": false
+            },
+            {
+              "type": "text",
+              "id": "workerEmail",
+              "enabled": true,
+              "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)"
+            }
+          ]
+        },
+        {
+          "type": "fieldSet",
+          "id": "orgData",
+          "title": "Organizational Data",
+          "children": [
+            {
+              "type": "text",
+              "label": "Type",
+              "enabled": false,
+              "value": "<% flowVariables.workerType %>"
+            },
+            {
+              "type": "text",
+              "label": "Manager",
+              "enabled": false,
+              "value": "<% flowVariables.workerManager %>"
+            },
+            {
+              "type": "instanceList",
+              "label": "Job Profile",
+              "multiSelect": false,
+              "required": true,
+              "id": "JobProfileList",
+              "displayKey": "jobProfileName",
+              "idKey": "ID",
+              "values": "<% jobProfiles.data %>"
+            },
+            {
+              "type": "text",
+              "label": "Job Title",
+              "required": true,
+              "id": "jobTitle",
+              "enabled": true
+            },
+            {
+              "type": "instanceList",
+              "label": "Supervisory Organization",
+              "searchEndPoint": "<% endpoints.workerSearch %>",
+              "multiSelect": false,
+              "id": "supervisoryList",
+              "searchResultValues": "<% workerSearch.data %>",
+              "values": "<% [] %>",
+              "selectedValues": "<% [] %>"
+            },
+            {
+              "type": "text",
+              "id": "supplier",
+              "label": "supplier",
+              "enabled": true
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

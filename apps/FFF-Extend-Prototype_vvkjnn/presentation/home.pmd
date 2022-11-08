@@ -1,0 +1,68 @@
+{
+  "id": "home",
+  "presentation": {
+    "title": {
+      "type": "title",
+      "label": "Manage Externals"
+    },
+    "body": {
+      "type": "fieldSet",
+      "id": "fieldSetContainer",
+      "title": "Manage Externals",
+      "horizontal": true,
+      "children": [
+        {
+          "type": "fieldSet",
+          "id": "fieldSet1",
+          "title": "Add Externals",
+          "children": [
+            {
+              "type": "button",
+              "id": "addExternalBtn",
+              "action": "LINK",
+              "label": "Add External",
+              "taskReference": {
+                "type": "taskReference",
+                "taskId": "AddExternal"
+              }
+            }
+          ]
+        },
+        {
+          "type": "fieldSet",
+          "id": "fieldSet2",
+          "title": "Change Externals",
+          "children": [
+            {
+              "type": "button",
+              "action": "LINK",
+              "label": "Request External Worker Transfer"
+            },
+            {
+              "type": "text",
+              "value": "Use this to request the transfer of an External Worker into your team."
+            },
+            {
+              "type": "button",
+              "action": "LINK",
+              "label": "Change External's Contract"
+            },
+            {
+              "type": "text",
+              "value": "Use this to change External Worker's contract start and end dates. External Worker will automatically be terminated after contract end date."
+            },
+            {
+              "type": "button",
+              "action": "LINK",
+              "label": "Update External's Contact Details"
+            },
+            {
+              "type": "text",
+              "value": "Use this to change External Worker's mobile phone and external company email address."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

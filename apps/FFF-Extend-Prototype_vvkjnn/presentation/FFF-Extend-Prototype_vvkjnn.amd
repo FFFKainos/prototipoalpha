@@ -1,0 +1,87 @@
+{
+  "appProperties": [],
+  "dataProviders": [
+    {
+      "key": "workday-staffing",
+      "value": "https://api.workday.com/staffing/v1"
+    },
+    {
+      "key": "workday-wql",
+      "value": "https://api.workday.com/wql/v1"
+    },
+    {
+      "key": "app",
+      "value": "https://api.workday.com/apps/FFF-Extend-Prototype_vvkjnn/v1/"
+    },
+    {
+      "key": "ref-data",
+      "value": "https://api.workday.com/referenceData"
+    }
+  ],
+  "flowDefinitions": [
+    {
+      "id": "hireContingentWorkers",
+      "flowSteps": [
+        {
+          "id": "order1",
+          "taskId": "AddExternal",
+          "startsFlow": true,
+          "transitions": [
+            {
+              "order": "a",
+              "value": "order2",
+              "condition": "true"
+            }
+          ]
+        },
+        {
+          "id": "order2",
+          "taskId": "ContingentWorkerDetails",
+          "transitions": [
+            {
+              "order": "a",
+              "value": "order3",
+              "condition": "true"
+            }
+          ]
+        },
+        {
+          "id": "order3",
+          "taskId": "Review",
+          "endsFlow": true
+        }
+      ]
+    }
+  ],
+  "tasks": [
+    {
+      "id": "root",
+      "routingPattern": "/",
+      "page": {
+        "id": "home"
+      }
+    },
+    {
+      "id": "AddExternal",
+      "routingPattern": "AddExternal",
+      "page": {
+        "id": "AddExternal"
+      }
+    },
+    {
+      "id": "ContingentWorkerDetails",
+      "routingPattern": "ContingentWorkerDetails",
+      "page": {
+        "id": "ContingentWorkerDetails"
+      }
+    },
+    {
+      "id": "Review",
+      "routingPattern": "Review",
+      "page": {
+        "id": "Review"
+      }
+    }
+  ],
+  "applicationId": "FFF-Extend-Prototype_vvkjnn"
+}

@@ -1,0 +1,179 @@
+{
+  "id": "AddExternal",
+  "include": [
+        "GridFunction.script"
+  ],
+  "securityDomains": [
+        "PrototypeDomain"
+  ],
+  "endPoints": [
+    {
+      "name": "me",
+      "baseUrlType": "workday-staffing",
+      "url": "/workers/me",
+      "authType": "sso"
+    },
+    {
+      "name": "managerwql",
+      "baseUrlType": "workday-wql",
+      "url": "<% ('/data?query=' + 'SELECT worker, manager_Level01 FROM workersForHCMReporting (dataSourceFilter = allActiveWorkers) WHERE worker = ' + me.id).pathEncode() %>",
+      "authType": "sso"
+    },
+    {
+      "name": "workerInfo",
+      "baseUrlType": "workday-wql",
+      "url": "<% ('/data?query=' + 'SELECT employeeID, cf_status, firstName, lastName, manager_Level01 FROM workersForHCMReporting (dataSourceFilter = allActiveWorkers) WHERE firstName = \"' + searchFirstName + '\"  and lastName = \"' + searchLastName + '\"').pathEncode() %>",
+      "authType": "sso",
+      "deferred": true
+    },
+    {
+      "name": "workerSearch",
+      "baseUrlType": "workday-staffing",
+      "url": "<% '/workers?search=' + instanceListQuery %>",
+      "exclude": "<% empty(instanceListQuery) %>",
+      "authType": "sso",
+      "deferred": true
+    }
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+      {
+        "type": "outboundVariable",
+        "variableScope": "flow",
+        "name": "flowOutboundVars",
+        "values": [
+          {
+            "outboundPath": "workerFirstName",
+            "value": "<% firstName.value %>"
+          },
+          {
+            "outboundPath": "workerLastName",
+            "value": "<% lastName.value %>"
+          },
+          {
+            "outboundPath": "workerManager",
+            "value": "<% managerList.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerType",
+            "value": "<% !empty contingentWorkerType.value ? contingentWorkerType.selectedEntries[0].descriptor : null %>"
+          }
+        ]
+      }
+    ]
+  },
+  "presentation": {
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Manage Externals",
+      "enabled": false
+    },
+    "body": {
+      "type": "section",
+      "horizontal": false,
+      "children": [
+        {
+          "type": "instanceList",
+          "label": "Manager",
+          "searchEndPoint": "<% endpoints.workerSearch %>",
+          "multiSelect": false,
+          "required": true,
+          "id": "managerList",
+          "searchResultValues": "<% workerSearch.data %>",
+          "values": "<% [managerwql.data[0].manager_Level01] %>",
+          "selectedValues": "<% [managerwql.data[0].manager_Level01] %>"
+        },
+        {
+          "type": "text",
+          "id": "firstName",
+          "label": "First Name",
+          "enabled": true,
+          "required": true,
+          "onChange": "<% GridFunction.fillGrid() %>"
+        },
+        {
+          "type": "text",
+          "id": "lastName",
+          "label": "Last Name",
+          "enabled": true,
+          "required": true,
+          "onChange": "<% GridFunction.fillGrid() %>"
+        },
+        {
+          "type": "radioGroup",
+          "id": "contingentWorkerType",
+          "label": "Contingent worker type",
+          "hideDisplayOption": "true",
+          "required": true,
+          "instanceList": [
+            {
+              "id": "officeBased",
+              "descriptor": "Office-based external (e.g. consultant)"
+            },
+            {
+              "id": "fieldBased",
+              "descriptor": "Field-based external (e.g. installer)"
+            }
+          ]
+        },
+        {
+          "type": "grid",
+          "id": "workersGrid",
+          "label": "These are existing people with same name. Please select if available in the greed below, proceed otherwise.",
+          "rowVariableName": "rowData",
+          "enabled": false,
+          "selectionEnabled": true,
+          "rows": "<% [] %>",
+          "columns": [
+            {
+              "type": "column",
+              "columnId": "0",
+              "label": "Status",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% rowData.cf_status %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "1",
+              "label": "Worker ID",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% rowData.employeeID %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "2",
+              "label": "First Name",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% rowData.firstName %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "3",
+              "label": "Last Name",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% rowData.lastName %>"
+              }
+            },
+            {
+              "type": "column",
+              "columnId": "4",
+              "label": "Manager",
+              "cellTemplate": {
+                "type": "text",
+                "value": "<% rowData.manager_Level01.descriptor %>"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

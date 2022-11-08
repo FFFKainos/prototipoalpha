@@ -1,0 +1,84 @@
+{
+  "id": "Review",
+  "securityDomains": [
+        "PrototypeDomain"
+  ],
+  "endPoints": [
+  ],
+  "outboundData": {
+    "outboundEndPoints": [
+    ]
+  },
+  "presentation": {
+    "headerSize": "VPS_DEFAULT",
+    "pageType": "edit",
+    "title": {
+      "type": "title",
+      "label": "Manage Externals",
+      "enabled": false
+    },
+    "body": {
+      "type": "fieldSet",
+      "id": "fieldSetContainer",
+      "horizontal": true,
+      "children": [
+        {
+          "type": "fieldSet",
+          "id": "personalInfo",
+          "label": "Personal Information",
+          "children": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First Name",
+              "value": "<% flowVariables.workerFirstName %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last Name",
+              "value": "<% flowVariables.workerLastName %>",
+              "enabled": false
+            },
+            {
+              "type": "date",
+              "id": "contractStartDate",
+              "label": "Contract Start Date",
+              "value": "<% flowVariables.startDate %>",
+              "enabled": false
+            },
+            {
+              "type": "date",
+              "id": "contractEndDate",
+              "label": "Contract End Date",
+              "value": "<% flowVariables.endDate %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "countryPhoneCode",
+              "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
+              "value": "<% flowVariables.numberForPhoneCode %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "workerEmail",
+              "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)",
+              "value": "<% flowVariables.email %>",
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "type": "fieldSet",
+          "id": "orgData",
+          "label": "Organizational Data",
+          "children": [
+          ]
+        }
+      ]
+    }
+  }
+}

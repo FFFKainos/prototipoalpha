@@ -1,0 +1,10 @@
+var fillGrid = function() {
+  if( !(empty (firstName.value)) && !(empty(lastName.value))){
+    var workerData = workerInfo.invoke({'searchFirstName': firstName.value, 'searchLastName': lastName.value});
+      workersGrid.setRows(workerData.data);
+  }
+};
+
+{
+  "fillGrid": fillGrid
+}
