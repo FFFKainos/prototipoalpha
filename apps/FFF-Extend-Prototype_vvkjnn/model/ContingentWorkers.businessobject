@@ -6,7 +6,7 @@
     "PrototypeDomain"
   ],
   "defaultCollection": {
-    "name": "contingentWorkers",
+    "name": "fffContingentWorkers",
     "label": "All Contingent Workers"
   },
   "fields": [
@@ -26,14 +26,82 @@
     },
     {
       "id": 3,
+      "name": "contractStartDate",
+      "label": "Contract Start Date",
+      "type": "DATE",
+      "precision": "DAY"
+    },
+    {
+      "id": 4,
+      "name": "contractEndDate",
+      "label": "Contract End Date",
+      "type": "DATE",
+      "precision": "DAY"
+    },
+    {
+      "id": 5,
+      "name": "countryPhoneCode",
+      "label": "Country Phone Code",
+      "type": "INTEGER"
+    },
+    {
+      "id": 6,
+      "name": "email",
+      "label": "Email",
+      "type": "TEXT"
+    },
+    {
+      "id": 7,
       "name": "contingentWorkerType",
       "label": "Contingent Worker Type",
       "type": "TEXT"
     },
     {
-      "id": 4,
+      "id": 8,
       "name": "manager",
       "label": "Manager",
+      "type": "TEXT"
+    },
+    {
+      "id": 9,
+      "name": "jobProfile",
+      "label": "Job Profile",
+      "type": "TEXT"
+    },
+    {
+      "id": 10,
+      "name": "jobTitle",
+      "label": "Job Title",
+      "type": "TEXT"
+    },
+    {
+      "id": 11,
+      "name": "supervisoryOrganization",
+      "label": "Supervisory Organization",
+      "type": "TEXT"
+    },
+    {
+      "id": 12,
+      "name": "company",
+      "label": "Company",
+      "type": "TEXT"
+    },
+    {
+      "id": 13,
+      "name": "costCenter",
+      "label": "Cost Center",
+      "type": "TEXT"
+    },
+    {
+      "id": 14,
+      "name": "location",
+      "label": "Location",
+      "type": "TEXT"
+    },
+    {
+      "id": 15,
+      "name": "supplier",
+      "label": "Supplier",
       "type": "TEXT"
     }
   ]

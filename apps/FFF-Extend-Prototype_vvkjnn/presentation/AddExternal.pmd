@@ -55,6 +55,10 @@
             "value": "<% managerList.selectedEntries[0].descriptor %>"
           },
           {
+            "outboundPath": "workerManagerId",
+            "value": "<% managerList.selectedEntries[0].id %>"
+          },
+          {
             "outboundPath": "workerType",
             "value": "<% !empty contingentWorkerType.value ? contingentWorkerType.selectedEntries[0].descriptor : null %>"
           }

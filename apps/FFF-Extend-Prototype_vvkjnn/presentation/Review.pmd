@@ -7,6 +7,13 @@
   ],
   "outboundData": {
     "outboundEndPoints": [
+      {
+        "name": "workerReview",
+        "baseUrlType": "app",
+        "url": "fffContingentWorkers",
+        "httpMethod": "POST",
+        "authType": "sso"
+      }
     ]
   },
   "presentation": {
@@ -24,58 +31,127 @@
       "children": [
         {
           "type": "fieldSet",
-          "id": "personalInfo",
-          "label": "Personal Information",
+          "id": "reviewPersonalInfo",
+          "title": "Personal Information",
           "children": [
             {
               "type": "text",
               "id": "firstName",
               "label": "First Name",
               "value": "<% flowVariables.workerFirstName %>",
-              "enabled": false
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.firstName"
             },
             {
               "type": "text",
               "id": "lastName",
               "label": "Last Name",
               "value": "<% flowVariables.workerLastName %>",
-              "enabled": false
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.lastName"
             },
             {
               "type": "date",
               "id": "contractStartDate",
               "label": "Contract Start Date",
-              "value": "<% flowVariables.startDate %>",
-              "enabled": false
+              "value": "<% flowVariables.workerContractStartDate %>",
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.contractStartDate"
             },
             {
               "type": "date",
               "id": "contractEndDate",
               "label": "Contract End Date",
-              "value": "<% flowVariables.endDate %>",
-              "enabled": false
+              "value": "<% flowVariables.workerContractEndDate %>",
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.contractEndDate"
             },
             {
               "type": "text",
               "id": "countryPhoneCode",
               "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
-              "value": "<% flowVariables.numberForPhoneCode %>",
-              "enabled": false
+              "value": "<% flowVariables.workerNumberForPhoneCode %>",
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.countryPhoneCode"
             },
             {
               "type": "text",
               "id": "workerEmail",
               "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)",
-              "value": "<% flowVariables.email %>",
-              "enabled": false
+              "value": "<% flowVariables.workerEmail %>",
+              "enabled": false,
+              "valueOutBinding": "ContingentWorkers.email"
             }
           ]
         },
         {
           "type": "fieldSet",
-          "id": "orgData",
-          "label": "Organizational Data",
+          "id": "reviewOrgData",
+          "title": "Organizational Data",
           "children": [
+            {
+              "type": "text",
+              "label": "Type",
+              "enabled": false,
+              "value": "<% flowVariables.workerType %>",
+              "valueOutBinding": "ContingentWorkers.contingetWorkerType"
+            },
+            {
+              "type": "text",
+              "label": "Manager",
+              "enabled": false,
+              "value": "<% flowVariables.workerManager %>",
+              "valueOutBinding": "ContingentWorkers.manager"
+            },
+            {
+              "type": "text",
+              "label": "Job Profile",
+              "enabled": false,
+              "value": "<% flowVariables.workerJobProfile %>",
+              "valueOutBinding": "ContingentWorkers.jobProfile"
+            },
+            {
+              "type": "text",
+              "label": "Job Title",
+              "enabled": false,
+              "value": "<% flowVariables.workerJobTitle %>",
+              "valueOutBinding": "ContingentWorkers.jobTitle"
+            },
+            {
+              "type": "text",
+              "label": "Supervisory Organization",
+              "enabled": false,
+              "value": "<% flowVariables.workerSupervisoryOrg %>",
+              "valueOutBinding": "ContingentWorkers.supervisoryOrganization"
+            },
+            {
+              "type": "text",
+              "label": "Company",
+              "enabled": false,
+              "value": "<% flowVariables.workerCompany %>",
+              "valueOutBinding": "ContingentWorkers.company"
+            },
+            {
+              "type": "text",
+              "label": "Cost Center",
+              "enabled": false,
+              "value": "<% flowVariables.workerCostCenter %>",
+              "valueOutBinding": "ContingentWorkers.costCenter"
+            },
+            {
+              "type": "text",
+              "label": "Location",
+              "enabled": false,
+              "value": "<% flowVariables.workerLocation %>",
+              "valueOutBinding": "ContingentWorkers.location"
+            },
+            {
+              "type": "text",
+              "label": "Supplier",
+              "enabled": false,
+              "value": "<% flowVariables.workerSupplier %>",
+              "valueOutBinding": "ContingentWorkers.supplier"
+            }
           ]
         }
       ]

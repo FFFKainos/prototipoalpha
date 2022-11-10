@@ -1,0 +1,30 @@
+{
+  "id": 1,
+  "name": "CreateContingentWorker",
+  "label": "Create Contingent Worker",
+  "description": "Create Contingent Worker",
+  "targetBusinessObject": "ContingentWorkers",
+  "useForOrchestrate": false,
+  "allowsCancel": false,
+  "approvalStep": {
+    "actions": [
+      "APPROVE",
+      "DENY",
+      "SEND_BACK"
+    ],
+    "pageRoute": "/approveEvent/{eventId}"
+  },
+  "revisePageRoute": "/revise/{eventStepId}",
+  "actionSteps": [
+    {
+      "id": 1,
+      "name": "ReviewContingentWorker",
+      "label": "Review Contingent Worker",
+      "description": "Task to review contingent worker",
+      "pageRoute": "/Review/{eventStepId}"
+    }
+  ],
+  "details": {
+    "pageRoute": "/details/{eventId}"
+  }
+}

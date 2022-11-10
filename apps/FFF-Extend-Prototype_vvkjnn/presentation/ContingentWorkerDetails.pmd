@@ -13,9 +13,33 @@
       "exclude":" <% empty(instanceListQuery) %>"
     },
     {
-      "name": "jobProfiles",
+      "name": "searchJobProfile",
       "baseUrlType": "workday-wql",
-      "url": "<% '/data?query=' + 'SELECT jobProfileName, ID FROM allJobProfiles WHERE jobProfileName is not null'.pathEncode() %>",
+      "url": "<% '/data?query=' + ('SELECT jobProfileName, ID FROM allJobProfiles WHERE jobProfileName is not null').pathEncode() %>",
+      "authType": "sso"
+    },
+    {
+      "name": "searchSupervisoryOrg",
+      "baseUrlType": "workday-wql",
+      "url": "<% '/data?query=' + ('SELECT name, workdayID, supervisoryManager, location_Primary FROM supervisoryOrganizations WHERE name is not null and supervisoryManager in (' + flowVariables.workerManagerId + ')').pathEncode() %>",
+      "authType": "sso"
+    },
+    {
+      "name": "searchCompany",
+      "baseUrlType": "workday-wql",
+      "url": "<% '/data?query=' + ('SELECT company FROM companies ORDER BY company ASC').pathEncode() %>",
+      "authType": "sso"
+    },
+    {
+      "name": "searchCostCenter",
+      "baseUrlType": "workday-wql",
+      "url": "<% '/data?query=' + ('SELECT costCenter FROM costCenters ORDER BY costCenter ASC').pathEncode() %>",
+      "authType": "sso"
+    },
+    {
+      "name": "searchSupplier",
+      "baseUrlType": "workday-wql",
+      "url": "<% '/data?query=' + ('SELECT supplier FROM supplierContacts ORDER BY supplier ASC').pathEncode()%>",
       "authType": "sso"
     }
   ],
@@ -27,24 +51,52 @@
         "name": "flowOutboundVars",
         "values": [
           {
-            "outboundPath": "contractStartDate",
-            "value": "<% startDate.value %>"
-          },
-          {
-            "outboundPath": "contractEndDate",
-            "value": "<% endDate.value.format('dd-MM-yyyy') %>"
-          },
-          {
-            "outboundPath": "numberForPhoneCode",
-            "value": "<% countryList.selectedEntries[0].id %>"
-          },
-          {
-            "outboundPath": "contractStartDate",
+            "outboundPath": "workerContractStartDate",
             "value": "<% startDate.value.format('dd-MM-yyyy') %>"
           },
           {
-            "outboundPath": "email",
+            "outboundPath": "workerContractEndDate",
+            "value": "<% endDate.value.format('dd-MM-yyyy') %>"
+          },
+          {
+            "outboundPath": "workerNumberForPhoneCode",
+            "value": "<% !empty countryList.value ? countryList.selectedEntries[0].descriptor : null %>"
+          },
+          {
+            "outboundPath": "workerEmail",
             "value": "<% workerEmail.value %>"
+          },
+          {
+            "outboundPath": "workerJobProfile",
+            "value": "<% jobProfile.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerJobTitle",
+            "value": "<% jobTitle.value %>"
+          },
+          {
+            "outboundPath": "workerSupervisoryOrg",
+            "value": "<% supervisoryOrganization.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerLocation",
+            "value": "<% instanceListCompany.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerCostCenter",
+            "value": "<% instanceListCostCenter.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerLocation",
+            "value": "<% instanceListLocation.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerCompany",
+            "value": "<% instanceListCompany.selectedEntries[0].descriptor %>"
+          },
+          {
+            "outboundPath": "workerSupplier",
+            "value": "<% !empty instanceListSupplier.value ? instanceListSupplier.selectedEntries[0].descriptor : null %>"
           }
         ]
       }
@@ -99,7 +151,7 @@
             {
               "type": "instanceList",
               "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
-              "id": "instanceListPhone",
+              "id": "countryList",
               "multiSelect" :false,
               "values": "<% [] %>",
               "searchEndPoint": "<% endpoints.countryPhoneCodes %>",
@@ -135,13 +187,13 @@
             },
             {
               "type": "instanceList",
+              "id": "jobProfile",
               "label": "Job Profile",
               "multiSelect": false,
               "required": true,
-              "id": "JobProfileList",
+              "values": "<% searchJobProfile.data %>",
               "displayKey": "jobProfileName",
-              "idKey": "ID",
-              "values": "<% jobProfiles.data %>"
+              "idKey": "ID"
             },
             {
               "type": "text",
@@ -152,19 +204,82 @@
             },
             {
               "type": "instanceList",
+              "id": "supervisoryOrganization",
               "label": "Supervisory Organization",
-              "searchEndPoint": "<% endpoints.workerSearch %>",
               "multiSelect": false,
-              "id": "supervisoryList",
-              "searchResultValues": "<% workerSearch.data %>",
-              "values": "<% [] %>",
-              "selectedValues": "<% [] %>"
+              "required": true,
+              "values": "<% searchSupervisoryOrg.data %>",
+              "displayKey": "name",
+              "idKey": "workdayID",
+              "selectedValuesAndDescriptors": "<% [searchSupervisoryOrg.data[0]] %>"
             },
             {
-              "type": "text",
-              "id": "supplier",
-              "label": "supplier",
-              "enabled": false
+              "type": "instanceList",
+              "id": "instanceListCompany",
+              "label": "Company",
+              "multiSelect": false,
+              "required": true,
+              "instanceListLoopTag": {
+                "id": "company",
+                "type": "instanceLoop",
+                "templateInstance": {
+                  "descriptor": "<% instance.company.descriptor %>",
+                  "id": "<% instance.company.id %>"
+                },
+                "on": "<% searchCompany.data %>",
+                "as": "instance"
+              }
+            },
+            {
+              "type": "instanceList",
+              "id": "instanceListCostCenter",
+              "label": "Cost Center",
+              "multiSelect": false,
+              "required": true,
+              "instanceListLoopTag": {
+                "id": "costCenter",
+                "type": "instanceLoop",
+                "templateInstance": {
+                  "descriptor": "<% instance2.costCenter.descriptor %>",
+                  "id": "<% instance2.costCenter.id %>"
+                },
+                "on": "<% searchCostCenter.data %>",
+                "as": "instance2"
+              }
+            },
+            {
+              "type": "instanceList",
+              "id": "instanceListLocation",
+              "label": "Location",
+              "multiSelect": false,
+              "required": true,
+              "instanceListLoopTag": {
+                "id": "location",
+                "type": "instanceLoop",
+                "templateInstance": {
+                  "descriptor": "<% instance3.location_Primary.descriptor %>",
+                  "id": "<% instance3.location_Primary.id %>"
+                },
+                "on": "<% searchSupervisoryOrg.data %>",
+                "as": "instance3"
+              },
+              "selectedValuesAndDescriptors": "<% [searchSupervisoryOrg.data[0].location_Primary] %>"
+            },
+            {
+              "type": "instanceList",
+              "id": "instanceListSupplier",
+              "label": "Supplier",
+              "multiSelect": false,
+              "instanceListLoopTag": {
+                "id": "supplier",
+                "type": "instanceLoop",
+                "templateInstance": {
+                  "descriptor": "<% instance4.supplier[0].descriptor %>",
+                  "id": "<% instance4.supplier[0].id %>"
+                },
+                "on": "<% searchSupplier.data %>",
+                "as": "instance4"
+              }
             }
           ]
         }
