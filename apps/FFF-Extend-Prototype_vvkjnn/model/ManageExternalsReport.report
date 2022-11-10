@@ -1,0 +1,114 @@
+{
+  "id": 1,
+  "name": "ManageExternalsReport",
+  "businessObject": "ContingentWorkers",
+  "defaultSecurityDomains": [
+    "PrototypeDomain"
+  ],
+  "sortConfigs": [
+    {
+      "id": 1,
+      "order": "a",
+      "field": "firstName",
+      "direction": "ASCENDING"
+    }
+  ],
+  "columns": [
+    {
+      "id": 1,
+      "name": "Contingent Worker",
+      "order": "a",
+      "isSelfReferencing": true
+    },
+    {
+      "id": 2,
+      "name": "First Name",
+      "order": "b",
+      "field": "firstName"
+    },
+    {
+      "id": 3,
+      "name": "Last Name",
+      "order": "c",
+      "field": "lastName"
+    },
+    {
+      "id": 4,
+      "name": "Contract Start Date",
+      "order": "d",
+      "field": "contractStartDate"
+    },
+    {
+      "id": 5,
+      "name": "Contract End Date",
+      "order": "e",
+      "field": "contractEndDate"
+    },
+    {
+      "id": 6,
+      "name": "Country Phone Code",
+      "order": "f",
+      "field": "countryPhoneCode"
+    },
+    {
+      "id": 7,
+      "name": "Email",
+      "order": "g",
+      "field": "email"
+    },
+    {
+      "id": 8,
+      "name": "Contingent Worker Type",
+      "order": "h",
+      "field": "contingentWorkerType"
+    },
+    {
+      "id": 9,
+      "name": "Manager",
+      "order": "i",
+      "field": "manager"
+    },
+    {
+      "id": 10,
+      "name": "Job Profile",
+      "order": "k",
+      "field": "jobProfile"
+    },
+    {
+      "id": 11,
+      "name": "Job Title",
+      "order": "l",
+      "field": "jobTitle"
+    },
+    {
+      "id": 12,
+      "name": "Supervisory Organization",
+      "order": "m",
+      "field": "supervisoryOrganization"
+    },
+    {
+      "id": 13,
+      "name": "Company",
+      "order": "n",
+      "field": "company"
+    },
+    {
+      "id": 14,
+      "name": "Cost Center",
+      "order": "o",
+      "field": "costCenter"
+    },
+    {
+      "id": 15,
+      "name": "Location",
+      "order": "p",
+      "field": "location"
+    },
+    {
+      "id": 16,
+      "name": "Supplier",
+      "order": "q",
+      "field": "supplier"
+    }
+  ]
+}

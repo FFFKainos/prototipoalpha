@@ -40,7 +40,7 @@
               "label": "First Name",
               "value": "<% flowVariables.workerFirstName %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.firstName"
+              "valueOutBinding": "workerReview.firstName"
             },
             {
               "type": "text",
@@ -48,23 +48,23 @@
               "label": "Last Name",
               "value": "<% flowVariables.workerLastName %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.lastName"
+              "valueOutBinding": "workerReview.lastName"
             },
             {
-              "type": "date",
+              "type": "text",
               "id": "contractStartDate",
               "label": "Contract Start Date",
-              "value": "<% flowVariables.workerContractStartDate %>",
+              "value": "<% flowVariables.workerContractStartDate.format('dd.MM.yyyy') %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.contractStartDate"
+              "valueOutBinding": "workerReview.contractStartDate"
             },
             {
-              "type": "date",
+              "type": "text",
               "id": "contractEndDate",
               "label": "Contract End Date",
-              "value": "<% flowVariables.workerContractEndDate %>",
+              "value": "<% flowVariables.workerContractEndDate.format('dd.MM.yyyy') %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.contractEndDate"
+              "valueOutBinding": "workerReview.contractEndDate"
             },
             {
               "type": "text",
@@ -72,7 +72,7 @@
               "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
               "value": "<% flowVariables.workerNumberForPhoneCode %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.countryPhoneCode"
+              "valueOutBinding": "workerReview.countryPhoneCode"
             },
             {
               "type": "text",
@@ -80,7 +80,7 @@
               "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)",
               "value": "<% flowVariables.workerEmail %>",
               "enabled": false,
-              "valueOutBinding": "ContingentWorkers.email"
+              "valueOutBinding": "workerReview.email"
             }
           ]
         },
@@ -94,63 +94,63 @@
               "label": "Type",
               "enabled": false,
               "value": "<% flowVariables.workerType %>",
-              "valueOutBinding": "ContingentWorkers.contingetWorkerType"
+              "valueOutBinding": "workerReview.contingetWorkerType"
             },
             {
               "type": "text",
               "label": "Manager",
               "enabled": false,
               "value": "<% flowVariables.workerManager %>",
-              "valueOutBinding": "ContingentWorkers.manager"
+              "valueOutBinding": "workerReview.manager"
             },
             {
               "type": "text",
               "label": "Job Profile",
               "enabled": false,
               "value": "<% flowVariables.workerJobProfile %>",
-              "valueOutBinding": "ContingentWorkers.jobProfile"
+              "valueOutBinding": "workerReview.jobProfile"
             },
             {
               "type": "text",
               "label": "Job Title",
               "enabled": false,
               "value": "<% flowVariables.workerJobTitle %>",
-              "valueOutBinding": "ContingentWorkers.jobTitle"
+              "valueOutBinding": "workerReview.jobTitle"
             },
             {
               "type": "text",
               "label": "Supervisory Organization",
               "enabled": false,
               "value": "<% flowVariables.workerSupervisoryOrg %>",
-              "valueOutBinding": "ContingentWorkers.supervisoryOrganization"
+              "valueOutBinding": "workerReview.supervisoryOrganization"
             },
             {
               "type": "text",
               "label": "Company",
               "enabled": false,
               "value": "<% flowVariables.workerCompany %>",
-              "valueOutBinding": "ContingentWorkers.company"
+              "valueOutBinding": "workerReview.company"
             },
             {
               "type": "text",
               "label": "Cost Center",
               "enabled": false,
               "value": "<% flowVariables.workerCostCenter %>",
-              "valueOutBinding": "ContingentWorkers.costCenter"
+              "valueOutBinding": "workerReview.costCenter"
             },
             {
               "type": "text",
               "label": "Location",
               "enabled": false,
               "value": "<% flowVariables.workerLocation %>",
-              "valueOutBinding": "ContingentWorkers.location"
+              "valueOutBinding": "workerReview.location"
             },
             {
               "type": "text",
               "label": "Supplier",
               "enabled": false,
               "value": "<% flowVariables.workerSupplier %>",
-              "valueOutBinding": "ContingentWorkers.supplier"
+              "valueOutBinding": "workerReview.supplier"
             }
           ]
         }

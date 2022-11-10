@@ -52,11 +52,11 @@
         "values": [
           {
             "outboundPath": "workerContractStartDate",
-            "value": "<% startDate.value.format('dd-MM-yyyy') %>"
+            "value": "<% startDate.value %>"
           },
           {
             "outboundPath": "workerContractEndDate",
-            "value": "<% endDate.value.format('dd-MM-yyyy') %>"
+            "value": "<% endDate.value %>"
           },
           {
             "outboundPath": "workerNumberForPhoneCode",
