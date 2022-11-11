@@ -10,9 +10,73 @@
       {
         "name": "workerReview",
         "baseUrlType": "app",
-        "url": "fffContingentWorkers",
+        "url": "fffContingentWorkers/",
         "httpMethod": "POST",
-        "authType": "sso"
+        "allowEmptyValue": true,
+        "authType": "sso",
+        "values": [
+          {
+            "outboundPath": "contractStartDate",
+            "value": "<% flowVariables.workerContractStartDate %>"
+          },
+          {
+            "outboundPath": "contractEndDate",
+            "value": "<% flowVariables.workerContractEndDate %>"
+          },
+          {
+            "outboundPath": "countryPhoneCode",
+            "value": "<% flowVariables.workerNumberForPhoneCode %>"
+          },
+          {
+            "outboundPath": "email",
+            "value": "<% flowVariables.workerEmail %>"
+          },
+          {
+            "outboundPath": "jobProfile",
+            "value": "<% flowVariables.workerJobProfile %>"
+          },
+          {
+            "outboundPath": "jobTitle",
+            "value": "<% flowVariables.workerJobTitle %>"
+          },
+          {
+            "outboundPath": "supervisoryOrganization",
+            "value": "<% flowVariables.workerSupervisoryOrg %>"
+          },
+          {
+            "outboundPath": "costCenter",
+            "value": "<% flowVariables.workerCostCenter %>"
+          },
+          {
+            "outboundPath": "location",
+            "value": "<% flowVariables.workerLocation %>"
+          },
+          {
+            "outboundPath": "company",
+            "value": "<% flowVariables.workerCompany %>"
+          },
+          {
+            "outboundPath": "supplier",
+            "value": "<% flowVariables.workerSupplier %>"
+          },
+          {
+            "outboundPath": "firstName",
+            "value": "<% flowVariables.workerFirstName %>"
+          },
+          {
+            "outboundPath": "lastName",
+            "value": "<% flowVariables.workerLastName %>"
+          },
+          {
+            "outboundPath": "manager",
+            "value": "<% flowVariables.workerManager %>"
+          },
+          {
+            "outboundPath": "contingentWorkerType",
+            "value": "<% flowVariables.workerType %>"
+          }
+        ],
+        "onSend": "<% console.info('test logs: ' + json:asJSON(self.data)); return self.data %>"
       }
     ]
   },
@@ -39,48 +103,42 @@
               "id": "firstName",
               "label": "First Name",
               "value": "<% flowVariables.workerFirstName %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.firstName"
+              "enabled": false
             },
             {
               "type": "text",
               "id": "lastName",
               "label": "Last Name",
               "value": "<% flowVariables.workerLastName %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.lastName"
+              "enabled": false
             },
             {
               "type": "text",
               "id": "contractStartDate",
               "label": "Contract Start Date",
               "value": "<% flowVariables.workerContractStartDate.format('dd.MM.yyyy') %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.contractStartDate"
+              "enabled": false
             },
             {
               "type": "text",
               "id": "contractEndDate",
               "label": "Contract End Date",
               "value": "<% flowVariables.workerContractEndDate.format('dd.MM.yyyy') %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.contractEndDate"
+              "enabled": false
             },
             {
               "type": "text",
               "id": "countryPhoneCode",
               "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
               "value": "<% flowVariables.workerNumberForPhoneCode %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.countryPhoneCode"
+              "enabled": false
             },
             {
               "type": "text",
               "id": "workerEmail",
               "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)",
               "value": "<% flowVariables.workerEmail %>",
-              "enabled": false,
-              "valueOutBinding": "workerReview.email"
+              "enabled": false
             }
           ]
         },
@@ -93,64 +151,55 @@
               "type": "text",
               "label": "Type",
               "enabled": false,
-              "value": "<% flowVariables.workerType %>",
-              "valueOutBinding": "workerReview.contingetWorkerType"
+              "value": "<% flowVariables.workerType %>"
             },
             {
               "type": "text",
               "label": "Manager",
               "enabled": false,
-              "value": "<% flowVariables.workerManager %>",
-              "valueOutBinding": "workerReview.manager"
+              "value": "<% flowVariables.workerManager %>"
             },
             {
               "type": "text",
               "label": "Job Profile",
               "enabled": false,
-              "value": "<% flowVariables.workerJobProfile %>",
-              "valueOutBinding": "workerReview.jobProfile"
+              "value": "<% flowVariables.workerJobProfile %>"
             },
             {
               "type": "text",
               "label": "Job Title",
               "enabled": false,
-              "value": "<% flowVariables.workerJobTitle %>",
-              "valueOutBinding": "workerReview.jobTitle"
+              "value": "<% flowVariables.workerJobTitle %>"
             },
             {
               "type": "text",
               "label": "Supervisory Organization",
               "enabled": false,
-              "value": "<% flowVariables.workerSupervisoryOrg %>",
-              "valueOutBinding": "workerReview.supervisoryOrganization"
+              "value": "<% flowVariables.workerSupervisoryOrg %>"
             },
             {
               "type": "text",
               "label": "Company",
               "enabled": false,
-              "value": "<% flowVariables.workerCompany %>",
-              "valueOutBinding": "workerReview.company"
+              "value": "<% flowVariables.workerCompany %>"
             },
             {
               "type": "text",
               "label": "Cost Center",
               "enabled": false,
-              "value": "<% flowVariables.workerCostCenter %>",
-              "valueOutBinding": "workerReview.costCenter"
+              "value": "<% flowVariables.workerCostCenter %>"
             },
             {
               "type": "text",
               "label": "Location",
               "enabled": false,
-              "value": "<% flowVariables.workerLocation %>",
-              "valueOutBinding": "workerReview.location"
+              "value": "<% flowVariables.workerLocation %>"
             },
             {
               "type": "text",
               "label": "Supplier",
               "enabled": false,
-              "value": "<% flowVariables.workerSupplier %>",
-              "valueOutBinding": "workerReview.supplier"
+              "value": "<% flowVariables.workerSupplier %>"
             }
           ]
         }

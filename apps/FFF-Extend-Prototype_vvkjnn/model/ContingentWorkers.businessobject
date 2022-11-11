@@ -42,7 +42,7 @@
       "id": 5,
       "name": "countryPhoneCode",
       "label": "Country Phone Code",
-      "type": "INTEGER"
+      "type": "TEXT"
     },
     {
       "id": 6,

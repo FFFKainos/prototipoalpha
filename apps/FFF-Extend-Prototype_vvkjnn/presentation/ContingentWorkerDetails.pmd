@@ -60,7 +60,7 @@
           },
           {
             "outboundPath": "workerNumberForPhoneCode",
-            "value": "<% !empty countryList.value ? countryList.selectedEntries[0].descriptor : null %>"
+            "value": "<% countryList.selectedEntries[0].descriptor %>"
           },
           {
             "outboundPath": "workerEmail",
@@ -79,10 +79,6 @@
             "value": "<% supervisoryOrganization.selectedEntries[0].descriptor %>"
           },
           {
-            "outboundPath": "workerLocation",
-            "value": "<% instanceListCompany.selectedEntries[0].descriptor %>"
-          },
-          {
             "outboundPath": "workerCostCenter",
             "value": "<% instanceListCostCenter.selectedEntries[0].descriptor %>"
           },
@@ -96,7 +92,7 @@
           },
           {
             "outboundPath": "workerSupplier",
-            "value": "<% !empty instanceListSupplier.value ? instanceListSupplier.selectedEntries[0].descriptor : null %>"
+            "value": "<% instanceListSupplier.selectedEntries[0].descriptor %>"
           }
         ]
       }
@@ -137,16 +133,14 @@
               "label": "Contract Start Date",
               "id": "startDate",
               "required": true,
-              "dateDisplayPattern": "dd/MM/yyyy",
-              "dateFormat": "dd/MM/yyyy"
+              "dateDisplayPattern": "dd.MM.yyyy",
+              "dateFormat": "dd.MM.yyyy"
             },
             {
               "type": "date",
               "label": "Contract End Date",
               "id": "endDate",
-              "required": true,
-              "dateDisplayPattern": "dd/MM/yyyy",
-              "dateFormat": "dd/MM/yyyy"
+              "required": true
             },
             {
               "type": "instanceList",
