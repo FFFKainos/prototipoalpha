@@ -83,11 +83,72 @@
         "baseUrlType": "orchestration",
         "url": "KONEOrch/launch",
         "httpMethod": "POST",
+        "allowEmptyValue": true,
         "authType": "sso",
         "values": [
           {
             "outboundPath": "orchestrationTargetId",
             "value": "<% workerReview.id %>"
+          },
+          {
+            "outboundPath": "contractStartDate",
+            "value": "<% flowVariables.workerContractStartDate %>"
+          },
+          {
+            "outboundPath": "contractEndDate",
+            "value": "<% flowVariables.workerContractEndDate %>"
+          },
+          {
+            "outboundPath": "countryPhoneCode",
+            "value": "<% flowVariables.workerNumberForPhoneCode %>"
+          },
+          {
+            "outboundPath": "email",
+            "value": "<% flowVariables.workerEmail %>"
+          },
+          {
+            "outboundPath": "jobProfile",
+            "value": "<% flowVariables.workerJobProfile %>"
+          },
+          {
+            "outboundPath": "jobTitle",
+            "value": "<% flowVariables.workerJobTitle %>"
+          },
+          {
+            "outboundPath": "supervisoryOrganization",
+            "value": "<% flowVariables.workerSupervisoryOrg %>"
+          },
+          {
+            "outboundPath": "costCenter",
+            "value": "<% flowVariables.workerCostCenter %>"
+          },
+          {
+            "outboundPath": "location",
+            "value": "<% flowVariables.workerLocation %>"
+          },
+          {
+            "outboundPath": "company",
+            "value": "<% flowVariables.workerCompany %>"
+          },
+          {
+            "outboundPath": "supplier",
+            "value": "<% flowVariables.workerSupplier %>"
+          },
+          {
+            "outboundPath": "firstName",
+            "value": "<% flowVariables.workerFirstName %>"
+          },
+          {
+            "outboundPath": "lastName",
+            "value": "<% flowVariables.workerLastName %>"
+          },
+          {
+            "outboundPath": "manager",
+            "value": "<% flowVariables.workerManager %>"
+          },
+          {
+            "outboundPath": "contingentWorkerType",
+            "value": "<% flowVariables.workerType %>"
           }
         ],
         "onSend": "<% console.info('test logs: ' + json:asJSON(self.data)); return self.data %>"
