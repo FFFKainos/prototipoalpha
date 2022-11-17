@@ -16,6 +16,14 @@
     {
       "key": "ref-data",
       "value": "https://api.workday.com/referenceData"
+    },
+    {
+      "key": "orchestration",
+      "value": "https://api.workday.com/orchestrate/v1/apps/FFF-Extend-Prototype_vvkjnn/orchestrations/"
+    },
+    {
+      "key": "WORKDAY-BP",
+      "value": "https://api.workday.com/businessProcess/v1/"
     }
   ],
   "flowDefinitions": [
@@ -80,6 +88,20 @@
       "routingPattern": "Review",
       "page": {
         "id": "Review"
+      }
+    },
+    {
+      "id": "contingentWorkerApproval",
+      "routingPattern": "/approve/{eventId}",
+      "page": {
+        "id": "Approval"
+      }
+    },
+    {
+      "id": "Approval",
+      "routingPattern": "/approval/{eventId}",
+      "page": {
+        "id": "Approval"
       }
     }
   ],

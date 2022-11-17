@@ -1,0 +1,147 @@
+{
+  "id": "Approval",
+  "securityDomains": [
+    "PrototypeDomain"
+  ],
+  "endPoints": [
+    {
+      "name": "event",
+      "baseUrlType": "WORKDAY-BP",
+      "url": "<% '/events/' + queryParams.eventId %>",
+      "authType": "sso",
+      "exclude": "<% empty queryParams.eventId %>"
+    },
+    {
+      "name": "workerApproval",
+      "baseUrlType": "app",
+      "url": "<% 'fffContingentWorkers/' + event.for.id %>",
+      "authType": "sso",
+      "exclude": "<% empty event.for.id %>"
+    }
+  ],
+  "presentation": {
+    "headerSize": "VPS_DEFAULT",
+    "title": {
+      "type": "title",
+      "label": "Manage Externals",
+      "enabled": false
+    },
+    "body": {
+      "type": "fieldSet",
+      "id": "fieldSetContainer",
+      "horizontal": true,
+      "children": [
+        {
+          "type": "fieldSet",
+          "id": "reviewPersonalInfo",
+          "title": "Personal Information",
+          "children": [
+            {
+              "type": "text",
+              "id": "firstName",
+              "label": "First Name",
+              "value": "<% workerApproval.firstName %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "lastName",
+              "label": "Last Name",
+              "value": "<% workerApproval.lastName %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "contractStartDate",
+              "label": "Contract Start Date",
+              "value": "<% workerApproval.contractStartDate %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "contractEndDate",
+              "label": "Contract End Date",
+              "value": "<% workerApproval.contractEndDate %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "countryPhoneCode",
+              "label": "Country code for Mobile phone number (Please select the country in case the external has a work mobile phone)",
+              "value": "<% workerApproval.countryPhoneCode %>",
+              "enabled": false
+            },
+            {
+              "type": "text",
+              "id": "workerEmail",
+              "label": "External Company Email (In case external will not get kone.com e-mail please fill in here external's current company e-mail address)",
+              "value": "<% workerApproval.email %>",
+              "enabled": false
+            }
+          ]
+        },
+        {
+          "type": "fieldSet",
+          "id": "reviewOrgData",
+          "title": "Organizational Data",
+          "children": [
+            {
+              "type": "text",
+              "label": "Type",
+              "enabled": false,
+              "value": "<% workerApproval.contingentWorkerType %>"
+            },
+            {
+              "type": "text",
+              "label": "Manager",
+              "enabled": false,
+              "value": "<% workerApproval.manager %>"
+            },
+            {
+              "type": "text",
+              "label": "Job Profile",
+              "enabled": false,
+              "value": "<% workerApproval.jobProfile %>"
+            },
+            {
+              "type": "text",
+              "label": "Job Title",
+              "enabled": false,
+              "value": "<% workerApproval.jobTitle %>"
+            },
+            {
+              "type": "text",
+              "label": "Supervisory Organization",
+              "enabled": false,
+              "value": "<% workerApproval.supervisoryOrganization %>"
+            },
+            {
+              "type": "text",
+              "label": "Company",
+              "enabled": false,
+              "value": "<% workerApproval.company %>"
+            },
+            {
+              "type": "text",
+              "label": "Cost Center",
+              "enabled": false,
+              "value": "<% workerApproval.costCenter %>"
+            },
+            {
+              "type": "text",
+              "label": "Location",
+              "enabled": false,
+              "value": "<% workerApproval.location %>"
+            },
+            {
+              "type": "text",
+              "label": "Supplier",
+              "enabled": false,
+              "value": "<% workerApproval.supplier %>"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

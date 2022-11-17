@@ -77,6 +77,20 @@
           }
         ],
         "onSend": "<% console.info('test logs: ' + json:asJSON(self.data)); return self.data %>"
+      },
+      {
+        "name": "orchestration",
+        "baseUrlType": "orchestration",
+        "url": "KONEOrch/launch",
+        "httpMethod": "POST",
+        "authType": "sso",
+        "values": [
+          {
+            "outboundPath": "orchestrationTargetId",
+            "value": "<% workerReview.id %>"
+          }
+        ],
+        "onSend": "<% console.info('test logs: ' + json:asJSON(self.data)); return self.data %>"
       }
     ]
   },

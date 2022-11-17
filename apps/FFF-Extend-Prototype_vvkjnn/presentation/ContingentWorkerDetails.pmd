@@ -60,7 +60,7 @@
           },
           {
             "outboundPath": "workerNumberForPhoneCode",
-            "value": "<% countryList.selectedEntries[0].descriptor %>"
+            "value": "<% !empty countryList.value ? countryList.selectedEntries[0].descriptor :null %>"
           },
           {
             "outboundPath": "workerEmail",
@@ -92,7 +92,7 @@
           },
           {
             "outboundPath": "workerSupplier",
-            "value": "<% instanceListSupplier.selectedEntries[0].descriptor %>"
+            "value": "<% !empty instanceListSupplier.value ? instanceListSupplier.selectedEntries[0].descriptor :null %>"
           }
         ]
       }
@@ -132,9 +132,7 @@
               "type": "date",
               "label": "Contract Start Date",
               "id": "startDate",
-              "required": true,
-              "dateDisplayPattern": "dd.MM.yyyy",
-              "dateFormat": "dd.MM.yyyy"
+              "required": true
             },
             {
               "type": "date",
