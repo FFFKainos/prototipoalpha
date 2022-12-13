@@ -1,8 +1,5 @@
 {
   "id": "Approval",
-  "securityDomains": [
-    "PrototypeDomain"
-  ],
   "endPoints": [
     {
       "name": "event",

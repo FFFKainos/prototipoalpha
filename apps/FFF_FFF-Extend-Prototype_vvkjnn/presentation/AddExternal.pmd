@@ -3,9 +3,6 @@
   "include": [
         "GridFunction.script"
   ],
-  "securityDomains": [
-        "PrototypeDomain"
-  ],
   "endPoints": [
     {
       "name": "me",

@@ -1,5 +1,5 @@
 {
-  "id": "FFF-Extend-Prototype_vvkjnn",
+  "id": "FFF_FFF-Extend-Prototype_vvkjnn",
   "languages": [
     {
       "code": "en-US",
@@ -14,8 +14,8 @@
       }
     ]
   },
-  "siteId": "FFF-Extend-Prototype_vvkjnn",
+  "siteId": "FFF_FFF-Extend-Prototype_vvkjnn",
   "cdnEnabled": true,
   "siteProperties": [ ],
-  "applicationId": "FFF-Extend-Prototype_vvkjnn"
+  "applicationId": "FFF_FFF-Extend-Prototype_vvkjnn"
 }
