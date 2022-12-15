@@ -1,5 +1,5 @@
 {
-  "appProperties": [ ],
+  "appProperties": [],
   "dataProviders": [
     {
       "key": "workday-staffing",
@@ -105,5 +105,5 @@
       }
     }
   ],
-  "applicationId": "FFF_FFF-Extend-Prototype_vvkjnn"
+  "applicationId": "FFF-Extend-Prototype_vvkjnn"
 }
